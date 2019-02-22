@@ -1,0 +1,3 @@
+../common/par_all36_cgenff.prm
+../common/top_all36_cgenff.rtf
+../common/toppar_water_ions.str

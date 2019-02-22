@@ -1,7 +1,7 @@
 #!/usr/bin/env python
-import MDAnalysis
-import numpy as np
 from numpy.linalg import norm
+import numpy as np
+import MDAnalysis
 import argparse
 
 # Command line arguments

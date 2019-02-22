@@ -172,7 +172,7 @@ def read_config(configFile):
 	return _OpenMMSBCConfig().readconfig(configFile)
 
 def read_psf(filename):
-    return CharmmPsfFile(filename)
+	return CharmmPsfFile(filename)
 
 def read_pdb(filename):
 	return PDBFile(filename)

@@ -1,0 +1,41 @@
+Hardware_type      = CUDA                  # Hardware options (CPU, CUDA, OPENCL)
+Hardware_gpu_prec  = mixed                 # Precision
+Hardware_gpu_idx   = 1                     # GPU index
+
+structure          = sodium.psf            # PSF file
+coordinates        = output.pdb            # PDB file
+param_file         = toppar.txt            # List of topology and parameter files
+
+reporter           = on                    # State reporter
+nstout             = 5000                  # State reporter frequency
+dcdreporter        = off                   # DCD reporter
+nstdcd             = 500                   # DCD frequency
+
+dt                 = 2.0                   # time step (fs)
+fric_coeff         = 1.0                   # Langevin coeff (ps^-1)
+temperature        = 300.0                 # Temperature (Kelvin)
+constraint         = HBonds                # Constraint options (see OpenMM doc)
+
+Droplet_radius     = 24.0                  # Radius of water droplet (Ang)
+Droplet_k          = 10.0                  # k of confinement potential (kcal/mol/A^2)
+Droplet_atom       = OH2                   # Atom which potential is applied 
+Droplet_cutoff     = 100.0                 # Cutoff radius (Ang)
+
+Solute_k           = 10.0                  # k of center of charge potential
+Solute_center_atom = SOD                   # Solute atom used for restraint
+
+Run_type           = FEP                   # Simulation type (MD or FEP)
+
+FEP_type           = vdw                   # Alchemical option (elec or vdw)
+FEP_atom_idx       = 0                     # Index range of solute molecule
+FEP_anni_elec      = no                    # Annihilate elec interaction?
+FEP_anni_vdw       = no                    # Annihilate vdw interaction?
+FEP_equil          = 50000                 # Equilibration steps
+FEP_production     = 500000                # Production steps
+FEP_isteps         = 500                   # Frequency for reduced potential output
+FEP_pot_name       = reduced-vdw.npy       # output file name of reduced potential
+#FEP_nlambda        = 11                    # Number of lambda points (linearly spaced)
+                                           # comment below if a simple linear spacing is 
+                                           # desired. FEP_lambda supersedes FEP_nlamdba
+FEP_lambda         = 1.0 0.9 0.8 0.7 0.6 0.5 0.4 0.3 0.2 0.1 0.0
+

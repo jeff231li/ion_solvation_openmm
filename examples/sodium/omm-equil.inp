@@ -1,0 +1,32 @@
+Hardware_type      = CUDA                  # Hardware options (CPU, CUDA, OPENCL)
+Hardware_gpu_prec  = mixed                 # Precision (single, mixed, double)
+Hardware_gpu_idx   = 1                     # GPU index
+
+structure          = sodium.psf            # PSF file
+coordinates        = sodium.pdb            # PDB file
+output_pdb         = output.pdb            # Output pdb name
+param_file         = toppar.txt            # List of topology and parameter files
+
+reporter           = on                    # State reporter
+nstout             = 5000                  # State reporter frequency
+dcdreporter        = on                    # DCD reporter
+nstdcd             = 5000                  # DCD frequency
+
+dt                 = 2.0                   # time step (fs)
+fric_coeff         = 1.0                   # Langevin coeff (ps^-1)
+temperature        = 300.0                 # Temperature (Kelvin)
+constraint         = HBonds                # Constraint options (see OpenMM doc)
+
+Droplet_radius     = 24.0                  # Radius of water droplet
+Droplet_k          = 10.0                  # k of confinement potential (kcal/mol/A^2)
+Droplet_atom       = OH2                   # Atom which potential is applied 
+Droplet_cutoff     = 100.0                 # Cutoff radius (Ang)
+
+Solute_k           = 10.0                  # k of center of charge potential
+Solute_center_atom = SOD                   # Solute atom used for restraint
+
+Run_type           = MD                    # Simulation type (MD or FEP)
+min_nstep          = 1000                  # Minimization step
+MD_equil           = 50000                 # Equilibration steps
+MD_production      = 500000                # Production steps
+

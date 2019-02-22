@@ -11,12 +11,12 @@ export DYLD_LIBRARY_PATH=/usr/local/cuda-9.0/lib:${DYLD_LIBRARY_PATH}
 python ../../scripts/openmm_engine.py omm-equil.inp
 
 # Run FEP
-python ../../scripts/openmm_engine.py omm-elec.inp
-python ../../scripts/openmm_engine.py omm-vdw.inp
+#python ../../scripts/openmm_engine.py omm-elec.inp
+#python ../../scripts/openmm_engine.py omm-vdw.inp
 
 # Analysis
 python ../../scripts/self-energy.py -psf acetate.psf -dcd output-equil.dcd -rad 24.0 -sel ACET
-python ../../scripts/mbar-fep.py -pot reduced-elec.npy -fep elec -T 300
-python ../../scripts/mbar-fep.py -pot reduced-vdw.npy -fep vdw -T 300
+#python ../../scripts/mbar-fep.py -pot reduced-elec.npy -fep elec -T 300
+#python ../../scripts/mbar-fep.py -pot reduced-vdw.npy -fep vdw -T 300
 
 exit

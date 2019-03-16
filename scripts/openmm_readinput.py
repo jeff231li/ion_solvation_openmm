@@ -3,6 +3,11 @@ from simtk.openmm import *
 from simtk.unit import *
 import numpy as np
 
+# TODO: Add PBC options
+# TODO: Add Drude FF options
+# TODO: Add WCA options in FEP
+# TODO: Add Morse potential options
+
 class _OpenMMSBCConfig():
 	def __init__(self):
 		self.nstout             = 500

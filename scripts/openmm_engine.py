@@ -6,6 +6,11 @@ from simtk.openmm import *
 from simtk.unit import *
 from time import time
 
+# TODO: Add support for CHARMM Drude polarizable FF
+# TODO: Add an attractive Morse term so that the droplet density is 0.033 mol/A^3
+# TODO: Add WCA Perturbation Option in Alchemical Region
+# TODO: Add option for PBC system
+
 # User Input
 inp = read_config(sys.argv[1])
 inp.initialize()
@@ -63,10 +68,10 @@ integrator = LangevinIntegrator(inp.temperature*kelvin,
 # Transform system for Alchemical calculation
 if inp.Run_type == 'FEP':
 	factory = AbsoluteAlchemicalFactory(consistent_exceptions=False,
-                                        disable_alchemical_dispersion_correction=True)
+                                            disable_alchemical_dispersion_correction=True)
 	alchemical_region = AlchemicalRegion(alchemical_atoms=inp.FEP_atoms,
-                                         annihilate_electrostatics=inp.FEP_anni_elec,
-                                         annihilate_sterics=inp.FEP_anni_vdw)
+                                             annihilate_electrostatics=inp.FEP_anni_elec,
+                                             annihilate_sterics=inp.FEP_anni_vdw)
 	system = factory.create_alchemical_system(system,
                                               alchemical_region)
 

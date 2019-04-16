@@ -6,10 +6,10 @@ from simtk.openmm import *
 from simtk.unit import *
 from time import time
 
+# TODO: Add option for PBC system
 # TODO: Add support for CHARMM Drude polarizable FF
 # TODO: Add an attractive Morse term so that the droplet density is 0.033 mol/A^3
 # TODO: Add WCA Perturbation Option in Alchemical Region
-# TODO: Add option for PBC system
 
 # User Input
 inp = read_config(sys.argv[1])

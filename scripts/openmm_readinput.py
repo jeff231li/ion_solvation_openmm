@@ -9,46 +9,70 @@ import numpy as np
 # TODO: Add Morse potential options
 
 class _OpenMMSBCConfig():
-	def __init__(self):
-		self.nstout             = 500
-		self.nstdcd             = 500
-		self.reporter           = 'on'
-		self.dcdreporter        = 'off'
+	def __init__(self):		
+		# Input
+		self.structure          = None
+		self.coordinates        = None
 		self.output_pdb         = None
+		self.param_file         = None
 		
+		# Output
+		self.reporter           = 'on'
+		self.nstout             = 500
+		self.dcdreporter        = 'on'
+		self.nstdcd             = 500
+		
+		# Integrator
 		self.dt                 = 2.0
 		self.fric_coeff         = 1.0
 		self.temperature        = 298.0
 		self.constraint         = HBonds
 		
-		self.Droplet_atom       = 'OH2'
+		# Water Droplet
 		self.Droplet_cutoff     = 100.0
+		self.Droplet_radius     = None
+		self.Droplet_atom       = None
+		self.Droplet_k          = None
 		
+		# Solute molecule
+		self.Solute_center_atom = None
 		self.Solute_k           = 1.0
 		
 		self.Run_type           = 'MD'
 		
-		self.min_nstep          = 0
-		self.min_tol            = 0.1
+		# Minimization
+		self.min_nstep          = 1000
+		self.min_tol            = 0.5
 		
-		self.MD_equil           = 0
+		# MD Equilibration
+		self.MD_equil           = 50000
 		self.MD_production      = 50000
+		self.MD_total           = 0.0
 		
+		# FEP Variables
 		self.FEP_type           = 'elec'
+		self.FEP_equil          = 5000
+		self.FEP_production     = 50000
 		self.FEP_nlambda        = None
 		self.FEP_lambda         = None
-		self.FEP_lambda_dir     = 1
-		self.FEP_equil          = 50000
-		self.FEP_production     = 50000
-		self.FEP_niter          = 500
+		self.FEP_lambda_dir     = 1.0
+		self.FEP_isteps         = 500
 		self.FEP_pot_name       = 'potential.npy'
-		
-		self.FEP_anni_elec      = False
+		self.FEP_anni_elec      = True
 		self.FEP_anni_vdw       = False
+		self.FEP_nstates        = 0.0
+		self.FEP_niter          = 0.0
+		self.FEP_total          = 0.0
+		self.FEP_u_kln          = 0.0
 		
+		# Hardware
 		self.Hardware_type      = 'CUDA'
 		self.Hardware_gpu_prec  = 'mixed'
 		self.Hardware_gpu_idx   = '0'
+		
+		# Constants
+		self.kBT                = 0.0
+		self.kT                 = 0.0
 		
 	def initialize(self):
 		self.kBT      = 0.001987204118*self.temperature

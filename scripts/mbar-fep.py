@@ -28,6 +28,7 @@ l = np.linspace(0,1,nstates)
 
 # Subsample data to extract uncorrelated equilibrium timeseries
 N_k = np.zeros([nstates], np.int32) # number of uncorrelated samples
+
 for k in range(nstates):
     [nequil, g, Neff_max] = timeseries.detectEquilibration(u_kln[k,k,:])
     indices = timeseries.subsampleCorrelatedData(u_kln[k,k,:], g=g)
@@ -36,8 +37,12 @@ for k in range(nstates):
 
 # Compute free energy differences and statistical uncertainties
 mbar = MBAR(u_kln, N_k)
-[DeltaF_ij, dDeltaF_ij, Theta_ij] = mbar.getFreeEnergyDifferences()
-ODeltaF_ij = mbar.computeOverlap()
+[DeltaF_ij, dDeltaF_ij, Theta_ij] = mbar.getFreeEnergyDifferences(return_theta=True)
+#results = mbar.getFreeEnergyDifferences(return_dict=True,return_theta=True)
+#DeltaF_ij = results['Delta_f']
+#dDeltaF_ij = results['dDelta_f']
+#Theta_ij = results['Theta']
+ODeltaF_ij = mbar.computeOverlap()['matrix']
 
 # Print results
 f = open(Savename, 'w')
